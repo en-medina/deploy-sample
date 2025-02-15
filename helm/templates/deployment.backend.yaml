@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.backend.appName }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.backend.appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.backend.appName }}
+    spec:
+      containers:
+        - name: {{ .Values.backend.appName }}
+          image: "{{ .Values.backend.registry }}/{{ .Values.backend.project }}/{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
+          ports:
+            - containerPort: {{ .Values.backend.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.backend.appName }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.backend.port }}
+  selector:
+    app: {{ .Values.backend.appName }}

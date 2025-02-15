@@ -1,15 +1,34 @@
 replicaCount: 1
+commonRegistry: &commonRegistry docker.io
+commonProject: &commonProject do-community
 
 backend:
-  image: backend-image:latest
+  appName: backend
+  service:
+    type: ClusterIP
+    port: 3000
+  registry: *commonRegistry
+  project: *commonProject
+  image: backend-image
+  tag: latest
   port: 3000
 
 frontend:
-  image: frontend-image:latest
+  appName: frontend
+  service:
+    type: ClusterIP
+    port: 80
+  registry: *commonRegistry
+  project: *commonProject
+  image: frontend-image
+  tag: latest
   port: 80
 
 database:
-  image: postgres:latest
+  registry: *commonRegistry
+  project: *commonProject
+  image: postgres
+  tag: latest
   port: 5432
   env:
     POSTGRES_USER: "admin"

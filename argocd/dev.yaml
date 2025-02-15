@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    repoURL: https://github.com/pauljosepq/argocd-sample
+    repoURL: https://github.com/pauljosepq/deploy-sample
     path: helm
     targetRevision: main
   syncPolicy:

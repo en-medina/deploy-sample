@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
         - name: database
-          image: {{ .Values.database.image }}
+          image: "{{ .Values.database.registry }}/{{ .Values.database.project }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
           env:
             - name: POSTGRES_USER
               value: {{ .Values.database.env.POSTGRES_USER }}
@@ -29,3 +30,15 @@ spec:
         - name: db-storage
           persistentVolumeClaim:
             claimName: database-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.database.persistence.size }}
+  storageClassName: {{ .Values.database.persistence.storageClass }}

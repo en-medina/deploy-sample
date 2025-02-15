@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.frontend.appName}}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.frontend.appName}}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.frontend.appName}}
+    spec:
+      containers:
+        - name: {{ .Values.frontend.appName}}
+          image: "{{ .Values.frontend.registry }}/{{ .Values.frontend.project }}/{{ .Values.frontend.image }}:{{ .Values.frontend.tag }}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.frontend.appName}}
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: {{ .Values.frontend.service.port }}
+  selector:
+    app: {{ .Values.frontend.appName}}
