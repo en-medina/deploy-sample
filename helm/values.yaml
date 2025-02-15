@@ -1,0 +1,29 @@
+replicaCount: 1
+
+backend:
+  image: backend-image:latest
+  port: 3000
+
+frontend:
+  image: frontend-image:latest
+  port: 80
+
+database:
+  image: postgres:latest
+  port: 5432
+  env:
+    POSTGRES_USER: "admin"
+    POSTGRES_PASSWORD: "admin"
+  persistence:
+    enabled: true
+    storageClass: standard
+    size: 1Gi
+
+ingress:
+  enabled: true
+  host: login-app.local
+  backendPath: /api
+  frontendPath: /
+
+service:
+  type: ClusterIP
