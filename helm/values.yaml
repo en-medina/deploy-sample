@@ -1,6 +1,5 @@
-replicaCount: 1
-commonRegistry: &commonRegistry docker.io
-commonProject: &commonProject do-community
+commonRegistry: &commonRegistry ghcr.io
+commonProject: &commonProject pauljosepq
 
 backend:
   appName: backend
@@ -9,7 +8,7 @@ backend:
     port: 3000
   registry: *commonRegistry
   project: *commonProject
-  image: backend-image
+  image: login-app-backend
   tag: latest
   port: 3000
 
@@ -20,14 +19,16 @@ frontend:
     port: 80
   registry: *commonRegistry
   project: *commonProject
-  image: frontend-image
+  image: login-app-frontend
   tag: latest
   port: 80
 
 database:
+  replicaCount: 1
+  appName: database
   registry: *commonRegistry
   project: *commonProject
-  image: postgres
+  image: login-app-database
   tag: latest
   port: 5432
   env:
@@ -40,7 +41,6 @@ database:
 
 ingress:
   enabled: true
-  host: login-app.local
   backendPath: /api
   frontendPath: /
 

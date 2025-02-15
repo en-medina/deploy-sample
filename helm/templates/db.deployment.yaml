@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: database
+  name: {{ .Values.database.appName }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.database.replicaCount }}
   selector:
     matchLabels:
-      app: database
+      app: {{ .Values.database.appName }}
   template:
     metadata:
       labels:
-        app: database
+        app: {{ .Values.database.appName }}
     spec:
       containers:
-        - name: database
+        - name: {{ .Values.database.appName }}
           image: "{{ .Values.database.registry }}/{{ .Values.database.project }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
           env:
             - name: POSTGRES_USER
