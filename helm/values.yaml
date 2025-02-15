@@ -9,7 +9,7 @@ backend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-backend
-  tag: latest
+  tag: "1.0.0"
   port: 3000
 
 frontend:
@@ -20,7 +20,7 @@ frontend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-frontend
-  tag: latest
+  tag: "1.0.0"
   port: 80
 
 database:
@@ -29,7 +29,7 @@ database:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-database
-  tag: latest
+  tag: "1.0.0"
   port: 5432
   env:
     POSTGRES_USER: "admin"
