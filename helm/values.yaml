@@ -11,6 +11,7 @@ backend:
   image: login-app-backend
   tag: "1.0.0"
   port: 3000
+  targetPort: 3000
 
 frontend:
   appName: frontend
@@ -22,6 +23,7 @@ frontend:
   image: login-app-frontend
   tag: "1.0.0"
   port: 80
+  targetPort: 4000
 
 database:
   replicaCount: 1
