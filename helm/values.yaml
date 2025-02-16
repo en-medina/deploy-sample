@@ -30,15 +30,13 @@ database:
   appName: database
   registry: *commonRegistry
   project: *commonProject
-  image: login-app-database
-  tag: "1.0.0"
+  image: mongo
+  tag: "latest"
   port: 5432
   env:
-    POSTGRES_USER: "admin"
-    POSTGRES_PASSWORD: "admin"
+    MONGO_INITDB_ROOT_USERNAME: "admin"
+    MONGO_INITDB_ROOT_PASSWORD: "admin"
   persistence:
-    enabled: true
-    storageClass: standard
     size: 1Gi
 
 ingress:

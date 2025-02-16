@@ -17,17 +17,17 @@ spec:
         - name: {{ .Values.database.appName }}
           image: "{{ .Values.database.registry }}/{{ .Values.database.project }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
           env:
-            - name: POSTGRES_USER
-              value: {{ .Values.database.env.POSTGRES_USER }}
-            - name: POSTGRES_PASSWORD
-              value: {{ .Values.database.env.POSTGRES_PASSWORD }}
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: {{ .Values.database.env.MONGO_INITDB_ROOT_USERNAME }}
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: {{ .Values.database.env.MONGO_INITDB_ROOT_PASSWORD }}
           ports:
             - containerPort: {{ .Values.database.port }}
           volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: db-storage
+            - mountPath: /data/db
+              name: mongodb-data
       volumes:
-        - name: db-storage
+        - name: mongodb-data
           persistentVolumeClaim:
             claimName: database-pvc
 ---
@@ -41,4 +41,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.database.persistence.size }}
-  storageClassName: {{ .Values.database.persistence.storageClass }}

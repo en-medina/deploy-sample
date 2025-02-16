@@ -3,9 +3,11 @@ kind: ApplicationSet
 metadata:
   name: login-app
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
   - list:
-      elements:
+      elements
       - namespace: dev
       - namespace: qa
       - namespace: prod
@@ -19,8 +21,10 @@ spec:
       project: default
       source:
         repoURL: https://github.com/pauljosepq/deploy-sample
-        path: helm
         targetRevision: main
+        path: helm
+        helm:
+          releaseName: login-app
       syncPolicy:
         syncOptions:
           - CreateNamespace=true
