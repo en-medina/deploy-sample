@@ -1,1 +1,8 @@
-replicaCount: 1
+backend:
+  replicaCount: 1
+
+frontend:
+  replicaCount: 1
+
+ingress:
+  host: login-app.qa.example.com

@@ -1,1 +1,8 @@
-replicaCount: 6
+backend:
+  replicaCount: 6
+
+frontend:
+  replicaCount: 6
+
+ingress:
+  host: login-app.prod.example.com

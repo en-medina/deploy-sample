@@ -12,6 +12,10 @@ spec:
     repoURL: https://github.com/pauljosepq/deploy-sample
     path: helm
     targetRevision: main
+    helm:
+      valueFiles:
+      - values.yaml
+      - values/dev.yaml
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
