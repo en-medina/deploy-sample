@@ -24,7 +24,7 @@ spec:
                   key: PORT
             - name: MONGODB_URI
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: {{ .Release.Name }}-secret
                   key: MONGODB_URI
           ports:
