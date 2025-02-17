@@ -9,7 +9,7 @@ backend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-backend
-  tag: "1.0.0"
+  tag: "1.1.6"
   port: 3000
   targetPort: 3000
 
@@ -21,7 +21,7 @@ frontend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-frontend
-  tag: "1.0.0"
+  tag: "1.1.6"
   port: 80
   targetPort: 4000
 
@@ -41,7 +41,7 @@ database:
 
 ingress:
   enabled: true
-  backendPath: /
+  backendPath: /api
   frontendPath: /
 
 service:

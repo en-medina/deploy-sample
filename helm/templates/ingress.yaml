@@ -17,7 +17,7 @@ spec:
                 name: {{ .Values.frontend.appName }}
                 port:
                   number: {{ .Values.frontend.port }}
-          - path: /api
+          - path: {{ .Values.ingress.backendPath }}
             pathType: Prefix
             backend:
               service:
