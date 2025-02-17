@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.database.appName }}
-          image: "{{ .Values.database.registry }}/{{ .Values.database.project }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
+          image: "{{ .Values.database.registry }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: {{ .Values.database.env.MONGO_INITDB_ROOT_USERNAME }}
