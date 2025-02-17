@@ -24,7 +24,7 @@ frontend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-frontend
-  tag: "1.1.6"
+  tag: "1.1.7"
   port: 80
   targetPort: 4000
 
