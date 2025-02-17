@@ -12,6 +12,9 @@ backend:
   tag: "1.1.6"
   port: 3000
   targetPort: 3000
+  env:
+    PORT:3000
+    MONGODB_URI:mongodb://admin:admin@database:27017
 
 frontend:
   appName: frontend

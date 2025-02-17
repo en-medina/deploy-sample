@@ -16,6 +16,17 @@ spec:
       containers:
         - name: {{ .Values.backend.appName }}
           image: "{{ .Values.backend.registry }}/{{ .Values.backend.project }}/{{ .Values.backend.image }}:{{ .Values.backend.tag }}"
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-config
+                  key: PORT
+            - name: MONGODB_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: MONGODB_URI
           ports:
             - containerPort: {{ .Values.backend.port }}
 ---
