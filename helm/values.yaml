@@ -45,8 +45,13 @@ database:
 
 ingress:
   enabled: true
-  backendPath: /api(/|$)(.*)
-  frontendPath: /(.*)
+  host: login-app.dev.example.com
+  frontend:
+    path: /
+    pathType: Prefix
+  backend:
+    path: /api(/|$)(.*)
+    pathType: ImplementationSpecific
 
 service:
   protocol: TCP

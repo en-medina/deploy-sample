@@ -11,15 +11,15 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: {{ .Values.ingress.frontendPath }}
-            pathType: ImplementationSpecific
+          - path: {{ .Values.ingress.frontend.path }}
+            pathType: {{ .Values.ingress.frontend.pathType }}
             backend:
               service:
                 name: {{ .Values.frontend.appName }}
                 port:
                   number: {{ .Values.frontend.port }}
-          - path: {{ .Values.ingress.backendPath }}
-            pathType: ImplementationSpecific
+          - path: {{ .Values.ingress.backend.path }}
+            pathType: {{ .Values.ingress.backend.pathType }}
             backend:
               service:
                 name: {{ .Values.backend.appName }}
