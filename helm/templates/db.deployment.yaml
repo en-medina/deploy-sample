@@ -18,9 +18,15 @@ spec:
           image: "{{ .Values.database.registry }}/{{ .Values.database.image }}:{{ .Values.database.tag }}"
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: {{ .Values.database.env.MONGO_INITDB_ROOT_USERNAME }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-config
+                  key: MONGO_INITDB_ROOT_USERNAME
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: {{ .Values.database.env.MONGO_INITDB_ROOT_PASSWORD }}
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-config
+                  key: MONGO_INITDB_ROOT_PASSWORD
           ports:
             - containerPort: {{ .Values.database.port }}
           volumeMounts:
@@ -32,9 +38,22 @@ spec:
             claimName: database-pvc
 ---
 apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.database.appName }}
+spec:
+  selector:
+    app: {{ .Values.database.appName }}
+  ports:
+    - protocol: {{ .Values.service.protocol }}
+      port: {{ .Values.database.port }}
+      targetPort: {{ .Values.database.targetPort }}
+  type: {{ .Values.service.type }}
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: database-pvc
+  name: {{ .Values.database.appName }}-pvc
 spec:
   accessModes:
     - ReadWriteOnce

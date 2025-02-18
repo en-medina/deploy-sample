@@ -4,3 +4,5 @@ metadata:
   name: {{ .Release.Name }}-config
 data:
   PORT: "{{ .Values.backend.env.PORT }}"
+  MONGO_INITDB_ROOT_USERNAME: "{{ .Values.database.env.MONGO_INITDB_ROOT_USERNAME }}"
+  MONGO_INITDB_ROOT_PASSWORD: "{{ .Values.database.env.MONGO_INITDB_ROOT_PASSWORD }}"

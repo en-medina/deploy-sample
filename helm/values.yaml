@@ -36,6 +36,7 @@ database:
   image: mongo
   tag: "8.0.5-rc2-noble"
   port: 27017
+  targetPort: 27017
   env:
     MONGO_INITDB_ROOT_USERNAME: "admin"
     MONGO_INITDB_ROOT_PASSWORD: "admin"
@@ -48,4 +49,5 @@ ingress:
   frontendPath: /
 
 service:
+  protocol: TCP
   type: ClusterIP

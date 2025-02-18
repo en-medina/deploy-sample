@@ -23,7 +23,7 @@ metadata:
 spec:
   type: {{ .Values.frontend.service.type }}
   ports:
-    - protocol: TCP
+    - protocol: {{ .Values.service.protocol }}
       port: {{ .Values.frontend.port }}
       targetPort: {{ .Values.frontend.targetPort }}
   selector:
