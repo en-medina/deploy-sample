@@ -2,6 +2,7 @@ commonRegistry: &commonRegistry ghcr.io
 commonProject: &commonProject pauljosepq
 
 backend:
+  replicaCount: 1
   appName: backend
   service:
     type: ClusterIP
@@ -9,7 +10,7 @@ backend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-backend
-  tag: "1.1.6"
+  tag: "1.1.8"
   port: 3000
   targetPort: 3000
   env:
@@ -17,6 +18,7 @@ backend:
     MONGODB_URI: "mongodb://admin:admin@database:27017"
 
 frontend:
+  replicaCount: 1
   appName: frontend
   service:
     type: ClusterIP
@@ -24,7 +26,7 @@ frontend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-frontend
-  tag: "1.1.7"
+  tag: "1.1.8"
   port: 80
   targetPort: 4000
 
