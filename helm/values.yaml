@@ -9,7 +9,7 @@ backend:
   registry: *commonRegistry
   project: *commonProject
   image: login-app-backend
-  tag: "1.1.6"
+  tag: "1.1.7"
   port: 3000
   targetPort: 3000
   env:
