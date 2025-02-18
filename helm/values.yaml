@@ -46,7 +46,7 @@ database:
 ingress:
   enabled: true
   backendPath: /api(/|$)(.*)
-  frontendPath: /
+  frontendPath: /(.*)
 
 service:
   protocol: TCP
