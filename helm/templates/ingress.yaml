@@ -13,7 +13,7 @@ spec:
         paths:
           - path: {{ .Values.ingress.frontend.path }}
             pathType: {{ .Values.ingress.frontend.pathType }}
-            frontend:
+            backend:
               service:
                 name: {{ .Values.frontend.appName }}
                 port:
