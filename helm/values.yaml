@@ -28,7 +28,7 @@ frontend:
   image: login-app-frontend
   tag: "1.1.9"
   port: 80
-  targetPort: 4000
+  targetPort: 80
 
 database:
   replicaCount: 1
