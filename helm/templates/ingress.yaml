@@ -4,7 +4,7 @@ metadata:
   name: login-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/use-regex: 'true'
-#    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /api
 spec:
   ingressClassName: nginx
   rules:
