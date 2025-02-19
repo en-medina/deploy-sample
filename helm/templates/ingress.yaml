@@ -18,6 +18,13 @@ spec:
                 name: {{ .Values.frontend.appName }}
                 port:
                   number: {{ .Values.frontend.port }}
+          - path: "/assets"
+            pathType: {{ .Values.ingress.frontend.pathType }}
+            backend:
+              service:
+                name: {{ .Values.frontend.appName }}
+                port:
+                  number: {{ .Values.frontend.port }}
           - path: {{ .Values.ingress.backend.path }}
             pathType: {{ .Values.ingress.backend.pathType }}
             backend:
