@@ -4,7 +4,7 @@ metadata:
   name: login-app-ingress
   annotations:
     nginx.ingress.kubernetes.io/use-regex: 'true'
-    nginx.ingress.kubernetes.io/rewrite-target: /api
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
@@ -12,13 +12,6 @@ spec:
       http:
         paths:
           - path: {{ .Values.ingress.frontend.path }}
-            pathType: {{ .Values.ingress.frontend.pathType }}
-            backend:
-              service:
-                name: {{ .Values.frontend.appName }}
-                port:
-                  number: {{ .Values.frontend.port }}
-          - path: "/assets"
             pathType: {{ .Values.ingress.frontend.pathType }}
             backend:
               service:
